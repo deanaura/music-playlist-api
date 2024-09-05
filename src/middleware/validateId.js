@@ -18,15 +18,20 @@ const validateId = (req, res, next) => {
 const validateQueryParams = (req, res, next) => {
   const { title, artist } = req.query;
 
-  if (title && (title.length < 1 || title.length > 100)) {
+  console.log(`Title: ${title}, Artist: ${artist}`);
+
+  if (title && (title.length < 1 || title.length > 30)) {
+    console.log('Invalid title length'); 
     return res.status(400).json({ message: 'Invalid title parameter' });
   }
 
-  if (artist && (artist.length < 1 || artist.length > 100)) {
+  if (artist && (artist.length < 1 || artist.length > 30)) {
+    console.log('Invalid artist length'); 
     return res.status(400).json({ message: 'Invalid artist parameter' });
   }
 
   next();
 };
+
 
 module.exports = { validateId, validateQueryParams };
